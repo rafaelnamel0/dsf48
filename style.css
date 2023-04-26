@@ -1,0 +1,39 @@
+body{
+    background-color: rgb(123, 161, 153);
+    font-family: arial;
+    align-items: center;
+    text-align: center;
+    color: white;
+}
+
+h1{
+    font-size: 50px;
+}
+
+input{
+    width: 70%;
+    border: 1px solid #fff;
+    background-color: transparent;
+    border-radius: 5px;
+    height: 30px;
+}
+
+#submit{
+    margin-top: 15px;
+    margin-bottom: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+    height: 40px;
+    border: 1px solid #fff;
+    background-color: transparent;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+}
+
+textarea{
+    background-color: transparent;
+}
+
+::placeholder{
+    color: white;
+}
