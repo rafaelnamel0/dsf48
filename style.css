@@ -1,6 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
 body{
-    background-color: rgb(123, 161, 153);
-    font-family: arial;
+    background-color: rgb(119, 141, 136);
+    font-family: 'Montserrat';
     align-items: center;
     text-align: center;
     color: white;
@@ -32,8 +33,10 @@ input{
 
 textarea{
     background-color: transparent;
+    font-family: 'Montserrat';
 }
 
 ::placeholder{
     color: white;
+    font-family: 'Montserrat';
 }

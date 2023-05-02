@@ -1,45 +1,42 @@
-const entrada = document.getElementById("entrada");
-const submit = document.getElementById("submit");
-const resultado = document.getElementById("resultado");
 
-submit.addEventListener("click", () => {
-  const entradaValor = entrada.value;
-  let resultadoValor = "";
 
-  for (let i = 0; i < entradaValor.length; i++) {
-    // Deslocamento de 3 posições à direita na tabela ASCII
-    let letraAscii = entradaValor.charCodeAt(i);
-    letraAscii += 3;
+function criptografar() {
+  // Maneira de obter a mensagem escrita pelo usuário
+  var mensagem = document.getElementById("entrada").value;
 
-    // Tratamento para manter dentro do alfabeto ASCII
-    if (letraAscii > 122) {
-      letraAscii -= 26;
-    } else if (letraAscii > 90 && letraAscii < 97) {
-      letraAscii -= 26;
-    }
-
-    // Inversão da linha
-    resultadoValor = String.fromCharCode(letraAscii) + resultadoValor;
+  // Desloca as letras 3 posições para a direita 
+  var mensagemDeslocada = "";
+  for (var i = 0; i < mensagem.length; i++) {
+      var codigoAscii = mensagem.charCodeAt(i);
+      if (codigoAscii >= 65 && codigoAscii <= 90) { 
+          mensagemDeslocada += String.fromCharCode((codigoAscii - 65 + 3) % 26 + 65);
+      } else if (codigoAscii >= 97 && codigoAscii <= 122) { 
+          mensagemDeslocada += String.fromCharCode((codigoAscii - 97 + 3) % 26 + 97);
+      } else { 
+          mensagemDeslocada += mensagem[i];
+      }
   }
 
-  // Deslocamento de 1 posição à esquerda para caracteres a partir da metade
-  const metade = Math.floor(resultadoValor.length / 2);
-  for (let i = metade; i < resultadoValor.length; i++) {
-    let letraAscii = resultadoValor.charCodeAt(i);
-    letraAscii -= 1;
+  // Mensagem será invertida
+  var mensagemInvertida = mensagemDeslocada.split("").reverse().join("");
 
-    // Tratamento para manter dentro do alfabeto ASCII
-    if (letraAscii < 97 && letraAscii > 90) {
-      letraAscii += 26;
-    } else if (letraAscii < 65) {
-      letraAscii += 26;
-    }
-
-    resultadoValor =
-      resultadoValor.substring(0, i) +
-      String.fromCharCode(letraAscii) +
-      resultadoValor.substring(i + 1);
+  // Desloca os caracteres da metade em diante uma posição para a esquerda 
+  var mensagemCriptografada = "";
+  for (var i = 0; i < mensagemInvertida.length; i++) {
+      var codigoAscii = mensagemInvertida.charCodeAt(i);
+      if (i < mensagemInvertida.length / 2) {
+          mensagemCriptografada += mensagemInvertida[i];
+      } else if (codigoAscii >= 33 && codigoAscii <= 126) { // 
+          mensagemCriptografada += String.fromCharCode(codigoAscii - 1);
+      } else { 
+          mensagemCriptografada += mensagemInvertida[i];
+      }
   }
 
-  resultado.value = resultadoValor;
-});
+  // Produto final exibido
+  document.getElementById("resultado").innerHTML =  mensagemCriptografada;
+}
+
+
+// Com isso, será possível criptografar a partir do clique no botão, já que a função 'criptografar' será executad
+document.getElementById("submit").addEventListener("click", criptografar);
